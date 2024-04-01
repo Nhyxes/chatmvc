@@ -8,7 +8,7 @@ echo "Server started";
 //Create TCP/IP stream socket
 $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 //reuseable port
-socket_set_option($socket, SOL_SOCKET, SO_REUSEADDR, 1);
+socket_set_option($socket, SOL_SOCKET, SO_REUSEADDR, 1); 
 
 //bind socket to specified host
 socket_bind($socket, $host, $port);

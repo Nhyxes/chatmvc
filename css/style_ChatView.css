@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* body donne les fond et les regles */
+body {
+    color: #F4F4F4;
+}
+
+/* container donne la forme a toute la page */
+div.container {
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-auto-rows: 1fr 1fr 3fr;
+    gap: 2px
+}
+
+/* aside */
+div.aside {
+    background-color: #4F4F4F;
+    grid-column: 1/2;
+    grid-row: 1/4;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    border-radius: 0 1.5em 1.5em 0;
+}
+
+.link {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.link a {
+    color: white;
+}
+
+/* div titre */
+
+#titre {
+    background-color: #9E9E9E;
+    grid-column: 2/6;
+    grid-row: 1/2;
+    border-radius: 1.5em 0 0 1.5em;
+}
+
+/* coté chat forme chat */
+div.chat {
+    background-color: #727272;
+    grid-column: 2/6;
+    grid-row: 2/4;
+    border-radius: 1.5em 0 0 1.5em;
+    height: auto;
+    padding: 0.8em;
+}
+
+/* specialité chat */
+
+#display {
+    background-color: #F4F4F4;
+    width: auto;
+    height: 100%;
+    border-radius: 1.5em 1.5em 1.5em 1.5em;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+#infos {
+    background-color: #3f3f3f;
+    color: white;
+    height: 5em;
+    width: 100%;
+    border-radius: 0 0 1.5em 1.5em;
+    float: inline-end;
+    display: flex;
+    justify-content: space-around;
+}
+#infos p {
+    margin: 2em 2em;
+    width: auto;
+}
+#sendmsg{
+    margin: 2em 2em;
+
+}

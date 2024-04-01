@@ -24,7 +24,7 @@
     <div class="row">
       <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 offset-md-3">
 
-        <form role="form" method="post" action="login">
+        <form role="form" method="post" action="../../controller/login">
           <div class="form-group">
             <label>Entrez votre pseudo</label>
             <input class="form-control" type="text" name="pseudo" />
@@ -34,11 +34,11 @@
             <label>Mot de passe</label>
             <input class="form-control" type="password" name="password" />
             <p class="help-block">
-              <a href="/chatmvcsoluce/login/forgotpassword">Mot de passe oublié ?</a>
+              <a href="/chatmvc/login/forgotpassword">Mot de passe oublié ?</a>
             </p>
           </div>
 
-          <button type="submit" name="login" class="btn btn-info">LOGIN </button>&nbsp;&nbsp;&nbsp;<a href="/chatmvcsoluce/login/signup">Je n'ai pas de compte</a>
+          <button type="submit" name="login" class="btn btn-info">LOGIN </button>&nbsp;&nbsp;&nbsp;<a href="/chatmvc/login/signup">Je n'ai pas de compte</a>
         </form>
       </div>
 

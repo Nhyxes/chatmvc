@@ -1,3 +1,9 @@
+// $(document).ready(function() {
+//     var msgBox = $('#message-box');
+
+// });
+
+
 //create a new WebSocket object.
 var msgBox = $('#message-box');
 var wsUri = "ws://localhost:9000/server.php";
