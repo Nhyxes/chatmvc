@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 offset-md-3">
 
-                <form role="form" method="post" action="/forgotpassword" onsubmit="return valid()">
+                <form role="form" method="post" action="forgotPassword" onsubmit="return valid()">
                     <div class="form-group">
                         <label for="pseudo">Pseudo</label>
                         <input class="form-control" type="text" name="pseudo" id="pseudo" placeholder="Pseudo" required>
@@ -45,10 +45,10 @@
 
                     <div class="form-group">
                         <label for="confirm_password">Confirmer le mot de passe</label>
-                        <input onblur="return valid()" class="form-control" type="password" name="confirm_password" id="confirm_password" placeholder="Confirmer le mot de passe" required>
+                        <input onblur="return valid()" class="form-control" type="password" id="confirm_password" placeholder="Confirmer le mot de passe" required>
                     </div>
 
-                    <button type="submit" class="btn btn-info" id="button" >Réinitialiser le mot de passe</button>
+                    <button type="submit" class="btn btn-info" id="button" name="forgot" >Réinitialiser le mot de passe</button>&nbsp;&nbsp;&nbsp;<a href="/chatmvc/login/signup">Je n'ai pas de compte</a>&nbsp;&nbsp;&nbsp;<a href="/chatmvc/login/loginIndex">Se connecter</a>
                 </form>
             </div>
 

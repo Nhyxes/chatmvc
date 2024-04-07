@@ -24,7 +24,8 @@
     <div class="row">
       <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 offset-md-3">
 
-        <form role="form" method="post" action="../../controller/login">
+      <form role="form" method="post" action="loginIndex">
+      <!-- <input type="hidden" name="action" value="loginIndex"> -->
           <div class="form-group">
             <label>Entrez votre pseudo</label>
             <input class="form-control" type="text" name="pseudo" />

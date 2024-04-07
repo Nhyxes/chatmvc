@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 offset-md-3">
 
-                <form role="form" method="post" action="/controller" onsubmit="return valid()">
+                <form role="form" method="post" action="signup">
                     <div class="form-group">
                         <label for="pseudo">Pseudo</label>
                         <input class="form-control" type="text" name="pseudo" id="pseudo" placeholder="Pseudo" required>
@@ -31,7 +31,7 @@
 
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input  class="form-control" type="email" name="email" id="email" placeholder="Email" required>
+                        <input class="form-control" type="email" name="email" id="email" placeholder="Email" required>
                     </div>
 
                     <div class="form-group">
@@ -43,14 +43,13 @@
                     </div>
                     <div class="form-group">
                         <label for="password_confirm">Confirmer le mot de passe</label>
-                        <input onblur="return valid()" class="form-control" type="password" name="password_confirm" id="password_confirm" placeholder="Confirmer le mot de passe" required>
+                        <input onblur="return valid()" class="form-control" type="password" id="password_confirm" placeholder="Confirmer le mot de passe" required>
                         <p id="message-2" class="text-danger"></p> <!-- Ajout d'un paragraphe pour afficher le message d'erreur -->
                     </div>
 
-                    <button type="submit" class="btn btn-info" id="button">S'enregistrer</button>
-                    <p class="help-block">
-                        <a href="/chatmvc/login/login">Se connecter</a>
-                    </p>
+                    <button type="submit" name="signup" class="btn btn-info" id="button">S'enregistrer</button>&nbsp;&nbsp;&nbsp;
+                    <a href="/chatmvc/login/loginIndex">Se connecter</a>
+
                 </form>
             </div>
 

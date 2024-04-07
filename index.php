@@ -6,15 +6,15 @@ session_start();
 
 // Vérifier la présence du fichier .htaccess à la racine du site.
 
-if (file_exists('.htaccess')) {
-    // Le fichier .htaccess existe
-    error_log("Le fichier .htaccess est présent à la racine du site.", LOG_INFO);
-} else {
-    // Le fichier .htaccess n'éxiste pas
-    $error_message = "Le fichier .htaccess est manquant à la racine du site à la ligne " .
-        __LINE__ . ". Timestamp : " . date('Y-m-d H:i:s');
-    error_log($error_message, LOG_ERR);
-}
+// if (file_exists('.htaccess')) {
+//     // Le fichier .htaccess existe
+//     error_log("Le fichier .htaccess est présent à la racine du site.", LOG_INFO);
+// } else {
+//     // Le fichier .htaccess n'éxiste pas
+//     $error_message = "Le fichier .htaccess est manquant à la racine du site à la ligne " .
+//         __LINE__ . ". Timestamp : " . date('Y-m-d H:i:s');
+//     error_log($error_message, LOG_ERR);
+// }
 
 // Class autoloader
 function loadClass($class)

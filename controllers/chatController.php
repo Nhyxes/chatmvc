@@ -3,12 +3,19 @@
 
 class chatController extends Controller
 {
+	private $userid;
+	private $oChatModel;
 
 	public function __construct()
 	{
+		$this->userid = $_SESSION['userid'];
+		$this->oChatModel = new chatModel();
 	}
 
-
+	public function chatIndex()
+	{
+		require_once(ROOT . 'views/chat/chatView.php');
+	}
 	// class enfant de controller donc elle va recevoir les noms des fichiers et l'envoyer a controller 
 
 	// elle va appeler la fonction isertMessage en lui envoyant (int $userId, int $roomId, string $message) : string cela signifie que la fonction va recevoir un string; ce string sera utilisé avec une fonction 

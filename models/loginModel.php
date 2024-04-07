@@ -1,23 +1,38 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
 class loginModel extends Model
 {
+	protected $dbh;
 
 	public function __construct()
 	{
+		parent::__construct(); // Appel du constructeur de la classe parente
+		$this->dbh = $this->getConnection();
 	}
 
 	// Fonction qui verifie si l'utilisateur existe dans la base de données pour la fonction pour login
-	public function existsUser($pseudo, $password)
+	public function existsUser($username, $password)
 	{
-		$sql = "SELECT id FROM users WHERE username = :pseudo AND password = :password ";
-		$stmt = $this->_connection->prepare($sql);
-		$stmt->bindParam(':pseudo', $pseudo);
-		$stmt->bindParam(':password', $password);
-		$stmt->execute();
-		return $stmt->fetch(PDO::FETCH_ASSOC);
 
-		/** Plus courte et sera utilisé pour les suivantes : 
+		$sql = "SELECT user_id, user_password FROM users WHERE user_name = :username";
+
+		$stmt = $this->dbh->prepare($sql);
+		$stmt->bindParam(':username', $username, PDO::PARAM_STR);
+		$stmt->execute();
+		$result = $stmt->fetch(PDO::FETCH_OBJ);
+
+		if (!empty($result) && password_verify($password, $result->user_password)) {
+			return $result->user_id;
+		} else {
+			return 0;
+		}
+	}
+
+
+
+	/** Plus courte et sera utilisé pour les suivantes : 
 		$stmt = $this->_connection->prepare("SELECT id FROM users WHERE username = :pseudo AND password = :password ");
 		$stmt->execute(array(':pseudo' => $pseudo, ':password' => $password));
 		return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -27,15 +42,15 @@ class loginModel extends Model
 		    $stmt = $this->_connection->prepare("SELECT id FROM users WHERE username = ? AND password = ?");
 			$stmt->execute(array($pseudo, $password));
 			return $stmt->fetch(PDO::FETCH_ASSOC);
-		 */
-	}
+	 */
 	//----------------------------------------------------------------
 
 	// Fonction qui verifie pour la fonction createUser si dans la base de données un user existe deja avec le pseudo ou l'email entré
-	private function issetUserOrEmail($pseudo, $email){
-		$stmt = $this->_connection->prepare("SELECT COUNT(*) FROM users WHERE pseudo = ? OR email = ?"); 
+	private function issetUserOrEmail($pseudo, $email)
+	{
+		$stmt = $this->dbh->prepare("SELECT COUNT(*) FROM users WHERE user_name = ? OR user_email = ?");
 		$stmt->execute(array($pseudo, $email));
-		$count =  $stmt->fetchColumn();
+		$count = $stmt->fetchColumn();
 
 		return $count > 0;
 	}
@@ -43,32 +58,54 @@ class loginModel extends Model
 	// Fonction createUser qui permet de creer un utilisateur
 	public function createUser($pseudo, $password, $email)
 	{
-		if($this->issetUserOrEmail($pseudo,$email)){
-			return FALSE;
+		if ($this->issetUserOrEmail($pseudo, $email) == true) {
+			return 0;
+		} else {
+			$password = password_hash($password, PASSWORD_DEFAULT);
+
+			$stmt = $this->dbh->prepare("INSERT INTO users (user_name, user_password, user_email) VALUES (:username, :password, :email)");
+			$stmt->bindParam(':username', $pseudo);
+			$stmt->bindParam(':password', $password);
+			$stmt->bindParam(':email', $email);
+			$stmt->execute();
 		}
 
-		$stmt = $this->_connection->prepare("INSERT INTO users (username, password, email) VALUES (:username, :password, :email");
 
-		return $stmt->execute(array(':username' => $pseudo, ':password' => $password, ':email' => $email));
+		$lastInsertId = $this->getConnection()->lastInsertId();
 
+		if ($lastInsertId > 0) {
+			return $lastInsertId;
+		} else {
+			return 0;
+		}
 	}
+
+
+	//		$result = $this->dbh->lastInsertId();
 	//----------------------------------------------------------------
 
-	// Fonction issetuser verifie pour retrive password si le peudo et l'email existe dans la bse de donnée donc si un utilisateur existe
+	// Fonction issetuser verifie pour retrive password si le pseudo et l'email existe dans la bse de donnée donc si un utilisateur existe
 
-	private function issetUser($pseudo, $email){
-		$stmt = $this->_connection->prepare("SELECT COUNT(*) FROM users WHERE ursername = ? AND email = ?");
+	private function issetUser($pseudo, $email)
+	{
+		$stmt = $this->dbh->prepare("SELECT COUNT(*) FROM users WHERE user_name = ? AND user_email = ?");
 
-		return $stmt->execute(array($pseudo, $email));
+		$stmt->execute(array($pseudo, $email));
+		$count = $stmt->fetchColumn();
+		echo '<script>alert("isset User bien deroulé");</script>';
+		return $count > 0;
 	}
 
 	public function retrievePassword($pseudo, $email, $password)
 	{
-		if (!$this->issetUser($pseudo, $email)){
-			return FALSE;
-		}
+		if ($this->issetUser($pseudo, $email) == false) {
+			return false;
+		} else {
+			$password = password_hash($password, PASSWORD_DEFAULT);
 
-		$stmt = $this->_connection->prepare("UPDATE users SET password = :password WHERE email = :email");
-		$stmt->execute(array(':email' => $email, ':password' => $password));
+			$stmt = $this->dbh->prepare("UPDATE users SET user_password = :password WHERE user_email = :email");
+			$stmt->execute(array(':email' => $email, ':password' => $password));
+			return true;
+		}
 	}
 }
