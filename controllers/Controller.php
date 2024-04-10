@@ -13,7 +13,6 @@ class Controller
 		$class = strtolower(get_class($this)); // Par exemple : chatController
 		$dir = preg_replace("#controller#", "", $class);
 
-		// Crée le chemin et inclut le fichier de vue
 		require_once(ROOT . 'views/' . $dir . '/' . $fichier . '.php');
 	}
 }

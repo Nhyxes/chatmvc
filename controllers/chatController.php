@@ -14,8 +14,23 @@ class chatController extends Controller
 
 	public function chatIndex()
 	{
+		$roomId = 
+		$data = [
+			$data ['room'] = $thisochatmodel->getRoom
+		]
 		require_once(ROOT . 'views/chat/chatView.php');
 	}
+
+	public function addMessage(){
+		
+	}
+
+
+	public function searchMessages(){
+
+	}
+
+	
 	// class enfant de controller donc elle va recevoir les noms des fichiers et l'envoyer a controller 
 
 	// elle va appeler la fonction isertMessage en lui envoyant (int $userId, int $roomId, string $message) : string cela signifie que la fonction va recevoir un string; ce string sera utilisé avec une fonction 

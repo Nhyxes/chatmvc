@@ -5,6 +5,8 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -14,7 +16,7 @@
                 <!-- ici on va remplacer ca par du php -->
                 <a href="#" id="Bienvenue">Bienvenue</a>
                 <a href="#" id="Vielletechno">Vielletechno</a>
-                "php boucle pour afficher toute les sales"
+                "php boucle pour afficher toute les sales      aefze"
             </div>
             
 
@@ -35,9 +37,8 @@
             </div>
         </div>
 
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="../../js/chat.js "></script>
+
 </body>
 
 </html>
