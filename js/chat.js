@@ -53,11 +53,39 @@ $("#message").on("keydown", function (event) {
 });
 
 //Send message
+// function send_message() {
+//     var message_input = $('#message'); //user message text
+//     var name_input = $('#name'); //user name
+
+//     if (message_input.val() == "") { //empty name?
+//         alert("Enter your Name please!");
+//         return;
+//     }
+//     if (message_input.val() == "") { //emtpy message?
+//         alert("Enter Some message Please!");
+//         return;
+//     }
+
+//     //prepare json data
+//     var msg = {
+//         message: message_input.val(),
+//         name: name_input.val(),
+//         color: '<?php echo $colors[$color_pick]; ?>'
+//     };
+
+//     // Envoyr les données du message à la base de données
+//     //convert and send data to server
+//     websocket.send(JSON.stringify(msg));
+//     message_input.val(''); //reset message input
+// }
+// Modification de la fonction send_message
 function send_message() {
     var message_input = $('#message'); //user message text
     var name_input = $('#name'); //user name
+    var room_input = $('#room'); //room id
+    var color = $('#color'); //color picker
 
-    if (message_input.val() == "") { //empty name?
+    if (name_input.val() == "") { //empty name?
         alert("Enter your Name please!");
         return;
     }
@@ -70,11 +98,35 @@ function send_message() {
     var msg = {
         message: message_input.val(),
         name: name_input.val(),
-        color: '<?php echo $colors[$color_pick]; ?>'
+        color: color.val(),
+        room: room_input.val()
     };
 
-    // Envoyr les données du message à la base de données
+    // Stocker le message dans la base de données
+    // store_message(msg.message, msg.name, msg.color, msg.room);
+
     //convert and send data to server
     websocket.send(JSON.stringify(msg));
+    message_input.val(''); //reset message input
+}
+
+// Fonction pour stocker le message dans la base de données
+function store_message() {
+    let message_input = $('#message'); //user message text
+    let name_input = $('#name'); //user name
+    let user_color = $('#color'); // user color
+    let user_room = $('#room');
+
+    let msg = {
+        message: message_input.val(),
+        name: name_input.val(),
+        color: user_color.val(),
+        room: user_room.val()
+    };
+
+    if (msg.message != '') {
+        $.post('../../chat/addMessage', msg);
+    }
+
     message_input.val(''); //reset message input
 }

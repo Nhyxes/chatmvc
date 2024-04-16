@@ -22,4 +22,10 @@ CREATE TABLE messages (
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (room_id) REFERENCES rooms(room_id)
 );
- 
+INSERT INTO rooms (room_name) VALUES
+('Salle 1'),
+('Salle 2'),
+('Salle 3'),
+('Salle 4');
+
+-- ALTER TABLE rooms AUTO_INCREMENT = 1; remmetre le compteur a zero

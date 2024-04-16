@@ -47,6 +47,9 @@ if (isset($params[1])) {
     // On sauvegarde le 2ème paramètre dans $method si il existe, sinon index
     $method = $params[1];
 
+    // On sauvegarde le 3ème paramètre dans $roomId si il existe, sinon 1
+    $roomId = isset($params[2]) ? $params[2] : 1;
+
     // On appelle le controller correspondant
     error_log(ROOT . 'controllers/' . $controller . '.php');
     // On instancie la classe correspondante
@@ -55,7 +58,7 @@ if (isset($params[1])) {
     // On vérifie si la méthode existe bien dans la classe
     if (method_exists($oController, $method)) {
         // On appelle la méthode $method du controleur $controller
-        $oController->$method();
+        $oController->$method($roomId);// Envoie de roomid a chatIndex si appelé
     } else {
         // On envoie le code réponse 404
         http_response_code(404);

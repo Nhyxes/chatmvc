@@ -42,3 +42,20 @@ button#send-message {
     background: #11e0fb;
     box-shadow: 2px 2px 2px #0000001c;
 }
+
+
+
+.container {
+    display: flex;
+}
+
+.aside {
+    flex: 1;
+    padding: 10px;
+    border-right: 1px solid #ddd;
+}
+
+.chat-wrapper {
+    flex: 3;
+    padding: 10px;
+}
